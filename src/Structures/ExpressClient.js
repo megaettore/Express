@@ -10,14 +10,6 @@ module.exports = class ExpressClient extends Client {
             disableMentions: 'everyone'
         });
 
-        this.nodes = [
-            {
-                host: options.host,
-                port: 80,
-                password: options.hostpassw
-            }
-        ]
-
         this.validate(options);
 
         this.commands = new Collection();
