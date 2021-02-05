@@ -12,14 +12,14 @@ module.exports = class extends Command {
     }
 
     async run(message, args) {
-        return message.reply("I know you would like to set the volume of the bot, but this uses a large amount of CPU, so just do as follows the current GIF:\nhttps://tenor.com/view/mute-kine-discord-user-quiet-volume-gif-16836185");
+        return message.reply("Aumentare il volume incrementa notevolmente l'utilizzo della CPU sul server hosting e potrebbe causare picchi di lag sul server, fai attenzione.");
         const { channel } = message.member.voice;
         const player = this.client.music.players.get(message.guild.id);
-        if(channel.id !== player.voiceChannel.id) return message.channel.send("You need to be in my voice channel to use this command!");
-        if(!player || !player.queue[0]) return message.channel.send("No song is currently playing in this guild.");
-        if(!args[0]) return message.channel.send(`Current volume: **${player.volume}%**`);
-        if(Number(args) <= 0 || Number(args) > 100) return message.channel.send("You may set the volume 1-100");
+        if(channel.id !== player.voiceChannel.id) return message.channel.send("Devi stare nella stanza vocale in cui mi trovo, cojon!");
+        if(!player || !player.queue[0]) return message.channel.send("Il problema non è il volume, se non senti nulla è perchè non c'è niente da ascoltare.Ma chi ce li manda questi?");
+        if(!args[0]) return message.channel.send(`Volume corrente: **${player.volume}%**`);
+        if(Number(args) <= 0 || Number(args) > 100) return message.channel.send("Puoi impostare il volume da 1 a 100");
         player.setVolume(Number(args));
-        return message.channel.send(`Volume set to: **${player.volume}%**`);
+        return message.channel.send(`Volume impostato a: **${player.volume}%**`);
     }
 }

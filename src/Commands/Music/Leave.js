@@ -14,10 +14,10 @@ module.exports = class extends Command {
         const { channel } = message.member.voice;
         const player = this.client.music.players.get(message.guild.id);
 
-        if(channel && channel.id !== player.voiceChannel.id) return message.channel.send("You need to be in my voice channel to use this command!");
-        if(!player) return message.channel.send("No song is currently playing in this guild.");
+        if(channel && channel.id !== player.voiceChannel.id) return message.channel.send("Devi stare in una stanza vocale prima, cojon!");
+        if(!player) return message.channel.send("Sarà che non ho le orecchie, ma non sento canzoni da fermare");
 
         this.client.music.players.destroy(message.guild.id);
-        return message.channel.send("Successfully stopped the music and left the channel.");
+        return message.channel.send("La canzone è stata arrestata per colpa tua..spia di merda!Meglio che vado, prima che fai arrestare anche me.");
     }
 }

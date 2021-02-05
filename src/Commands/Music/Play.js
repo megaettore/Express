@@ -23,7 +23,7 @@ module.exports = class extends Command {
             switch(res.loadType) {
                 case "TRACK_LOADED":
                     player.queue.add(res.tracks[0]);
-                    if(getPlayer.queue[0]) message.channel.send(`Enqueuing track **${res.tracks[0].title}**.`);
+                    if(getPlayer.queue[0]) message.channel.send(`Canzone in coda **${res.tracks[0].title}**.`);
                     if (!player.playing) player.play();
                     break;
                 case "SEARCH_RESULT":
@@ -33,26 +33,26 @@ module.exports = class extends Command {
                     .setAuthor("Song Selection", message.author.displayAvatarUrl)
                     .setDescription(tracks.map(video => `**${index++} -** ${video.title}`))
                     .setColor('RANDOM')
-                    .setFooter(`Your response time closes within 30 seconds. Type 'cancel' to cancel the selection.`);
+                    .setFooter(`Hai 30 secondi di tempo per fare la tua scelta.Pillola blu o pillola rossa?..Se sei indeciso digita 'cancel' e non farti più vedere.`);
                     message.channel.send(embed);
                     const collector = message.channel.createMessageCollector(m => {
                         return m.author.id === message.author.id && new RegExp('^([1-5|cancel])$', "i").test(m.content);
                     }, { time: 30000, max: 1 });
                     collector.on("collect", m => {
-                        if(/cancel/i.test(m.content)) return collector.stop("cancelled");
+                        if(/cancel/i.test(m.content)) return collector.stop("cancellato");
 
                         const track = tracks[Number(m.content) - 1];
                         player.queue.add(track);
-                        if(getPlayer.queue[0]) message.channel.send(`Enqueuing track **${track.title}**.`);
+                        if(getPlayer.queue[0]) message.channel.send(`Canzone aggiunta alla coda **${track.title}**.`);
                         if (!player.playing) player.play();
                     });
                     collector.on("end", (_, reason) => {
-                        if(["time", "cancelled"].includes(reason)) return message.channel.send("Cancelled selection");
+                        if(["time", "cancelled"].includes(reason)) return message.channel.send("Cancellato, ora sparisci però!");
                     });
                     break;
                 case "PLAYLIST_LOADED":
                     res.playlist.tracks.forEach(track => player.queue.add(track));
-                    message.channel.send(`Enqueuing **${res.playlist.tracks.length}** tracks in playlist **${res.playlist.info.name}**`);
+                    message.channel.send(`In coda **${res.playlist.tracks.length}** canzoni nella playlist **${res.playlist.info.name}**`);
                     if (!player.playing) player.play();
             }
         });

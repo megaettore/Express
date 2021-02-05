@@ -12,8 +12,8 @@ module.exports = class extends Command {
     }
 
     async run(message) {
-        if (!this.client.owners.includes(message.author.id)) return message.channel.send("Only bot owners may do this!");
-        const msg = await message.channel.send("*Restarting in 5 seconds, the bot may take a while to restart...*");
+        if (!this.client.owners.includes(message.author.id)) return message.channel.send("Solo el efe può riavviarmi!");
+        const msg = await message.channel.send("*Restart del bot fra 5 secondi, potrebbe impiegarci un po prima di ripartire...*");
         setTimeout(() => {
             msg.delete()
             .then(this.client.destroy())

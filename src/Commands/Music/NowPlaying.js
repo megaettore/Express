@@ -14,11 +14,11 @@ module.exports = class extends Command {
 
     async run(message) {
         const player = this.client.music.players.get(message.guild.id);
-        if(!player || !player.queue[0]) return message.channel.send("No song is currently playing in your guild!");
+        if(!player || !player.queue[0]) return message.channel.send("Nessuna canzone in ascolto");
         const { title, author, description, thumbnail, url, duration } = player.queue[0];
 
         const embed = new MessageEmbed()
-        .setAuthor("Current song playing:", message.author.displayAvatarURL)
+        .setAuthor("In ascolto:", message.author.displayAvatarURL)
         .setThumbnail(thumbnail)
         .setDescription(stripIndents`
         ${player.playing ? "▶" : "⏸"} **${title}** \`${Utils.formatTime(duration, true)}\` by ${author}\n${url}

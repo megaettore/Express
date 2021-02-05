@@ -12,7 +12,7 @@ module.exports = class extends Command {
 
     async run(message) {
         const player = this.client.music.players.get(message.guild.id);
-        if(!player || !player.queue[0]) return message.channel.send("No song is currently playing in this guild.");
+        if(!player || !player.queue[0]) return message.channel.send("Nessuna canzone in ascolto. Se ancora la senti chiedi di Massimo Adolfo Caponeri.");
         let index = 1;
         let string = "";
 

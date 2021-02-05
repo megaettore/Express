@@ -13,11 +13,11 @@ module.exports = class extends Command {
     async run(message, args) {
         const Discord = require('discord.js');
         const question = args.slice(0).join(' ');
-        if(!question) return message.channel.send("You didn't ask a question");
+        if(!question) return message.channel.send("Non hai fatto una domanda..");
         const url = 'https://8ball.delegator.com/magic/JSON/' + question;
         request(url, function(err, response, body) {
             if(err) {
-                message.channel.send("Can't get 8ball replies, try again later.");
+                message.channel.send("8ball non riesce o non vuole rispondere, prova più tardi e magari con una domanda più intelligente.");
             }
             body = JSON.parse(body);
             let embedColor = `RANDOM`;
